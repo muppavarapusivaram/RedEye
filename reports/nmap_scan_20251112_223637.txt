@@ -1,0 +1,508 @@
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-11-12 22:36 IST
+Warning: 10.138.0.151 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.201 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.109 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.21 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.239 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.96 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.93 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.124 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.244 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.246 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.122 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.129 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.61 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.57 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.146 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.165 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.141 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.230 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.13 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.200 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.196 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.116 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.113 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.143 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.1 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.141 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.110 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.145 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.5 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.29 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.96 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.92 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.131 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.46 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.115 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.52 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.44 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.76 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.57 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.136 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.77 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.128 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.122 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.31 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.26 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.107 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.18 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.228 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.60 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.73 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.126 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.135 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.210 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.81 giving up on port because retransmission cap hit (1).
+Warning: 10.138.0.247 giving up on port because retransmission cap hit (1).
+Warning: 10.138.1.62 giving up on port because retransmission cap hit (1).
+Nmap scan report for 10.138.0.5
+Host is up (0.0068s latency).
+Not shown: 732 closed tcp ports (reset), 265 filtered tcp ports (no-response)
+PORT     STATE SERVICE    VERSION
+5000/tcp open  rtsp
+5432/tcp open  postgresql PostgreSQL DB 9.6.0 or later
+7000/tcp open  rtsp
+3 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5000-TCP:V=7.94SVN%I=7%D=11/12%Time=6914BF04%P=x86_64-pc-linux-gnu%
+SF:r(GetRequest,8F,"HTTP/1\.1\x20403\x20Forbidden\r\nContent-Length:\x200\
+SF:r\nServer:\x20AirTunes/920\.10\.1\r\nX-Apple-ProcessingTime:\x202\r\nX-
+SF:Apple-RequestReceivedTimestamp:\x2041852196\r\n\r\n")%r(RTSPRequest,8F,
+SF:"RTSP/1\.0\x20403\x20Forbidden\r\nContent-Length:\x200\r\nServer:\x20Ai
+SF:rTunes/920\.10\.1\r\nX-Apple-ProcessingTime:\x203\r\nX-Apple-RequestRec
+SF:eivedTimestamp:\x2041852228\r\n\r\n")%r(HTTPOptions,8F,"HTTP/1\.1\x2040
+SF:3\x20Forbidden\r\nContent-Length:\x200\r\nServer:\x20AirTunes/920\.10\.
+SF:1\r\nX-Apple-ProcessingTime:\x203\r\nX-Apple-RequestReceivedTimestamp:\
+SF:x2041857237\r\n\r\n")%r(FourOhFourRequest,8F,"HTTP/1\.1\x20403\x20Forbi
+SF:dden\r\nContent-Length:\x200\r\nServer:\x20AirTunes/920\.10\.1\r\nX-App
+SF:le-ProcessingTime:\x203\r\nX-Apple-RequestReceivedTimestamp:\x204185725
+SF:6\r\n\r\n")%r(SIPOptions,A1,"RTSP/1\.0\x20403\x20Forbidden\r\nContent-L
+SF:ength:\x200\r\nServer:\x20AirTunes/920\.10\.1\r\nCSeq:\x2042\x20OPTIONS
+SF:\r\nX-Apple-ProcessingTime:\x203\r\nX-Apple-RequestReceivedTimestamp:\x
+SF:2041857275\r\n\r\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5432-TCP:V=7.94SVN%I=7%D=11/12%Time=6914BF04%P=x86_64-pc-linux-gnu%
+SF:r(SMBProgNeg,90,"E\0\0\0\x8fSFATAL\0VFATAL\0C0A000\0Munsupported\x20fro
+SF:ntend\x20protocol\x2065363\.19778:\x20server\x20supports\x203\.0\x20to\
+SF:x203\.0\0Fbackend_startup\.c\0L685\0RProcessStartupPacket\0\0");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port7000-TCP:V=7.94SVN%I=7%D=11/12%Time=6914BF19%P=x86_64-pc-linux-gnu%
+SF:r(GetRequest,8F,"HTTP/1\.1\x20403\x20Forbidden\r\nContent-Length:\x200\
+SF:r\nServer:\x20AirTunes/920\.10\.1\r\nX-Apple-ProcessingTime:\x203\r\nX-
+SF:Apple-RequestReceivedTimestamp:\x2041872582\r\n\r\n")%r(HTTPOptions,8F,
+SF:"HTTP/1\.1\x20403\x20Forbidden\r\nContent-Length:\x200\r\nServer:\x20Ai
+SF:rTunes/920\.10\.1\r\nX-Apple-ProcessingTime:\x201\r\nX-Apple-RequestRec
+SF:eivedTimestamp:\x2041872603\r\n\r\n")%r(RTSPRequest,8F,"RTSP/1\.0\x2040
+SF:3\x20Forbidden\r\nContent-Length:\x200\r\nServer:\x20AirTunes/920\.10\.
+SF:1\r\nX-Apple-ProcessingTime:\x204\r\nX-Apple-RequestReceivedTimestamp:\
+SF:x2041872725\r\n\r\n")%r(FourOhFourRequest,8F,"HTTP/1\.1\x20403\x20Forbi
+SF:dden\r\nContent-Length:\x200\r\nServer:\x20AirTunes/920\.10\.1\r\nX-App
+SF:le-ProcessingTime:\x204\r\nX-Apple-RequestReceivedTimestamp:\x204187791
+SF:9\r\n\r\n")%r(SIPOptions,A1,"RTSP/1\.0\x20403\x20Forbidden\r\nContent-L
+SF:ength:\x200\r\nServer:\x20AirTunes/920\.10\.1\r\nCSeq:\x2042\x20OPTIONS
+SF:\r\nX-Apple-ProcessingTime:\x203\r\nX-Apple-RequestReceivedTimestamp:\x
+SF:2041878076\r\n\r\n");
+MAC Address: DE:B3:50:E8:ED:63 (Unknown)
+
+Nmap scan report for 10.138.0.7
+Host is up (0.048s latency).
+Not shown: 995 filtered tcp ports (no-response)
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+3580/tcp open  http          National Instruments LabVIEW service locator httpd 1.0.0
+8080/tcp open  http          Embedthis HTTP lib httpd
+MAC Address: 3C:E9:F7:D4:1A:FC (Intel Corporate)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.138.0.57
+Host is up (0.052s latency).
+All 1000 scanned ports on 10.138.0.57 are in ignored states.
+Not shown: 713 closed tcp ports (reset), 287 filtered tcp ports (no-response)
+MAC Address: DE:76:16:3F:AE:4B (Unknown)
+
+Nmap scan report for 10.138.0.60
+Host is up (0.017s latency).
+All 1000 scanned ports on 10.138.0.60 are in ignored states.
+Not shown: 746 closed tcp ports (reset), 254 filtered tcp ports (no-response)
+MAC Address: 36:2E:45:12:10:43 (Unknown)
+
+Nmap scan report for 10.138.0.77
+Host is up (0.012s latency).
+All 1000 scanned ports on 10.138.0.77 are in ignored states.
+Not shown: 723 closed tcp ports (reset), 277 filtered tcp ports (no-response)
+MAC Address: CE:BD:30:C9:BC:9D (Unknown)
+
+Nmap scan report for 10.138.0.96
+Host is up (0.022s latency).
+All 1000 scanned ports on 10.138.0.96 are in ignored states.
+Not shown: 702 closed tcp ports (reset), 298 filtered tcp ports (no-response)
+MAC Address: BA:D6:2D:0C:C8:55 (Unknown)
+
+Nmap scan report for 10.138.0.116
+Host is up (0.015s latency).
+All 1000 scanned ports on 10.138.0.116 are in ignored states.
+Not shown: 727 closed tcp ports (reset), 273 filtered tcp ports (no-response)
+MAC Address: 12:3A:5E:07:BE:14 (Unknown)
+
+Nmap scan report for 10.138.0.122
+Host is up (0.041s latency).
+All 1000 scanned ports on 10.138.0.122 are in ignored states.
+Not shown: 694 closed tcp ports (reset), 306 filtered tcp ports (no-response)
+MAC Address: F6:D7:D1:A5:65:D8 (Unknown)
+
+Nmap scan report for 10.138.0.126
+Host is up (0.035s latency).
+All 1000 scanned ports on 10.138.0.126 are in ignored states.
+Not shown: 735 closed tcp ports (reset), 265 filtered tcp ports (no-response)
+MAC Address: 2A:9C:01:05:48:61 (Unknown)
+
+Nmap scan report for 10.138.0.131
+Host is up (0.056s latency).
+All 1000 scanned ports on 10.138.0.131 are in ignored states.
+Not shown: 731 closed tcp ports (reset), 269 filtered tcp ports (no-response)
+MAC Address: 86:15:48:2C:76:C6 (Unknown)
+
+Nmap scan report for 10.138.0.135
+Host is up (0.011s latency).
+Not shown: 713 closed tcp ports (reset), 285 filtered tcp ports (no-response)
+PORT      STATE SERVICE    VERSION
+49152/tcp open  tcpwrapped
+62078/tcp open  tcpwrapped
+MAC Address: 92:A1:E4:45:72:66 (Unknown)
+
+Nmap scan report for 10.138.0.136
+Host is up (0.031s latency).
+All 1000 scanned ports on 10.138.0.136 are in ignored states.
+Not shown: 700 closed tcp ports (reset), 300 filtered tcp ports (no-response)
+MAC Address: 2E:85:D0:30:7E:F7 (Unknown)
+
+Nmap scan report for 10.138.0.141
+Host is up (0.029s latency).
+Not shown: 573 closed tcp ports (reset), 425 filtered tcp ports (no-response)
+PORT      STATE SERVICE    VERSION
+49152/tcp open  tcpwrapped
+62078/tcp open  tcpwrapped
+MAC Address: 62:99:8E:23:3E:6E (Unknown)
+
+Nmap scan report for 10.138.0.145
+Host is up (0.051s latency).
+Not shown: 682 closed tcp ports (reset), 316 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql   MySQL (unauthorized)
+8080/tcp open  http    Apache Tomcat 11.0.10
+MAC Address: AA:0E:BA:2F:8B:54 (Unknown)
+
+Nmap scan report for 10.138.0.146
+Host is up (0.013s latency).
+All 1000 scanned ports on 10.138.0.146 are in ignored states.
+Not shown: 715 closed tcp ports (reset), 285 filtered tcp ports (no-response)
+MAC Address: E6:DA:9E:6B:7F:64 (Unknown)
+
+Nmap scan report for 10.138.0.151
+Host is up (0.16s latency).
+All 1000 scanned ports on 10.138.0.151 are in ignored states.
+Not shown: 685 closed tcp ports (reset), 315 filtered tcp ports (no-response)
+MAC Address: F6:FF:DC:43:91:2E (Unknown)
+
+Nmap scan report for 10.138.0.165
+Host is up (0.016s latency).
+All 1000 scanned ports on 10.138.0.165 are in ignored states.
+Not shown: 694 closed tcp ports (reset), 306 filtered tcp ports (no-response)
+MAC Address: 0E:A3:55:67:69:B6 (Unknown)
+
+Nmap scan report for 10.138.0.196
+Host is up (0.0087s latency).
+Not shown: 718 closed tcp ports (reset), 280 filtered tcp ports (no-response)
+PORT      STATE SERVICE    VERSION
+49152/tcp open  tcpwrapped
+62078/tcp open  tcpwrapped
+MAC Address: 9A:FD:55:30:D6:61 (Unknown)
+
+Nmap scan report for 10.138.0.198
+Host is up (0.022s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql   MySQL (unauthorized)
+MAC Address: 38:7A:0E:BE:D9:F3 (Intel Corporate)
+
+Nmap scan report for 10.138.0.199
+Host is up (0.020s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql   MySQL (unauthorized)
+8080/tcp open  http    Jetty 12.0.22
+MAC Address: 2C:3B:70:E7:A4:15 (AzureWave Technology)
+
+Nmap scan report for 10.138.0.200
+Host is up (0.029s latency).
+All 1000 scanned ports on 10.138.0.200 are in ignored states.
+Not shown: 698 closed tcp ports (reset), 302 filtered tcp ports (no-response)
+MAC Address: 7A:53:9D:43:2A:28 (Unknown)
+
+Nmap scan report for 10.138.0.201
+Host is up (0.024s latency).
+All 1000 scanned ports on 10.138.0.201 are in ignored states.
+Not shown: 729 closed tcp ports (reset), 271 filtered tcp ports (no-response)
+MAC Address: 1E:64:88:CB:D1:76 (Unknown)
+
+Nmap scan report for 10.138.0.210
+Host is up (0.025s latency).
+All 1000 scanned ports on 10.138.0.210 are in ignored states.
+Not shown: 718 closed tcp ports (reset), 282 filtered tcp ports (no-response)
+MAC Address: 76:D9:AF:F9:0D:87 (Unknown)
+
+Nmap scan report for 10.138.0.228
+Host is up (0.0081s latency).
+All 1000 scanned ports on 10.138.0.228 are in ignored states.
+Not shown: 706 closed tcp ports (reset), 294 filtered tcp ports (no-response)
+MAC Address: 82:07:EF:C0:24:5F (Unknown)
+
+Nmap scan report for 10.138.0.230
+Host is up (0.026s latency).
+All 1000 scanned ports on 10.138.0.230 are in ignored states.
+Not shown: 703 closed tcp ports (reset), 297 filtered tcp ports (no-response)
+MAC Address: 4E:B0:6B:16:37:2C (Unknown)
+
+Nmap scan report for 10.138.0.239
+Host is up (0.038s latency).
+All 1000 scanned ports on 10.138.0.239 are in ignored states.
+Not shown: 715 closed tcp ports (reset), 285 filtered tcp ports (no-response)
+MAC Address: E6:2B:19:8B:BA:1F (Unknown)
+
+Nmap scan report for 10.138.0.244
+Host is up (0.0094s latency).
+All 1000 scanned ports on 10.138.0.244 are in ignored states.
+Not shown: 834 filtered tcp ports (no-response), 166 closed tcp ports (reset)
+MAC Address: 62:AA:CC:92:B9:19 (Unknown)
+
+Nmap scan report for 10.138.0.246
+Host is up (0.22s latency).
+All 1000 scanned ports on 10.138.0.246 are in ignored states.
+Not shown: 617 closed tcp ports (reset), 383 filtered tcp ports (no-response)
+MAC Address: 6E:71:3F:A5:43:1D (Unknown)
+
+Nmap scan report for 10.138.0.247
+Host is up (0.16s latency).
+Not shown: 885 filtered tcp ports (no-response), 114 closed tcp ports (reset)
+PORT      STATE SERVICE    VERSION
+49152/tcp open  tcpwrapped
+MAC Address: 86:85:6C:6F:32:A4 (Unknown)
+
+Nmap scan report for 10.138.1.1
+Host is up (0.0045s latency).
+All 1000 scanned ports on 10.138.1.1 are in ignored states.
+Not shown: 722 closed tcp ports (reset), 278 filtered tcp ports (no-response)
+MAC Address: 4C:D5:87:53:F0:00 (Unknown)
+
+Nmap scan report for 10.138.1.5
+Host is up (0.010s latency).
+All 1000 scanned ports on 10.138.1.5 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+MAC Address: 50:5A:65:7D:70:07 (AzureWave Technologies)
+
+Nmap scan report for 10.138.1.13
+Host is up (0.021s latency).
+Not shown: 673 filtered tcp ports (no-response), 325 closed tcp ports (reset)
+PORT      STATE SERVICE    VERSION
+49152/tcp open  tcpwrapped
+62078/tcp open  tcpwrapped
+MAC Address: 7E:A9:15:17:95:0E (Unknown)
+
+Nmap scan report for 10.138.1.18
+Host is up (0.033s latency).
+All 1000 scanned ports on 10.138.1.18 are in ignored states.
+Not shown: 748 closed tcp ports (reset), 252 filtered tcp ports (no-response)
+MAC Address: 7E:DF:B6:87:A0:2D (Unknown)
+
+Nmap scan report for 10.138.1.21
+Host is up (0.016s latency).
+All 1000 scanned ports on 10.138.1.21 are in ignored states.
+Not shown: 705 closed tcp ports (reset), 295 filtered tcp ports (no-response)
+MAC Address: C6:E7:03:79:71:6F (Unknown)
+
+Nmap scan report for 10.138.1.26
+Host is up (0.066s latency).
+All 1000 scanned ports on 10.138.1.26 are in ignored states.
+Not shown: 719 closed tcp ports (reset), 281 filtered tcp ports (no-response)
+MAC Address: 32:63:20:A5:58:8F (Unknown)
+
+Nmap scan report for 10.138.1.29
+Host is up (0.025s latency).
+All 1000 scanned ports on 10.138.1.29 are in ignored states.
+Not shown: 723 closed tcp ports (reset), 277 filtered tcp ports (no-response)
+MAC Address: E2:37:6F:3B:FE:01 (Unknown)
+
+Nmap scan report for 10.138.1.31
+Host is up (0.0089s latency).
+Not shown: 715 closed tcp ports (reset), 283 filtered tcp ports (no-response)
+PORT      STATE SERVICE    VERSION
+49152/tcp open  tcpwrapped
+62078/tcp open  tcpwrapped
+MAC Address: 2E:9F:32:58:5A:43 (Unknown)
+
+Nmap scan report for 10.138.1.44
+Host is up (0.0082s latency).
+All 1000 scanned ports on 10.138.1.44 are in ignored states.
+Not shown: 727 closed tcp ports (reset), 273 filtered tcp ports (no-response)
+MAC Address: 4A:72:B2:17:79:9A (Unknown)
+
+Nmap scan report for 10.138.1.46
+Host is up (0.040s latency).
+All 1000 scanned ports on 10.138.1.46 are in ignored states.
+Not shown: 749 closed tcp ports (reset), 251 filtered tcp ports (no-response)
+MAC Address: 66:F5:19:74:10:FF (Unknown)
+
+Nmap scan report for 10.138.1.52
+Host is up (0.026s latency).
+All 1000 scanned ports on 10.138.1.52 are in ignored states.
+Not shown: 740 closed tcp ports (reset), 260 filtered tcp ports (no-response)
+MAC Address: 86:9B:78:77:A4:2C (Unknown)
+
+Nmap scan report for 10.138.1.57
+Host is up (0.014s latency).
+All 1000 scanned ports on 10.138.1.57 are in ignored states.
+Not shown: 731 closed tcp ports (reset), 269 filtered tcp ports (no-response)
+MAC Address: 16:0F:9E:B9:9A:60 (Unknown)
+
+Nmap scan report for 10.138.1.61
+Host is up (0.010s latency).
+All 1000 scanned ports on 10.138.1.61 are in ignored states.
+Not shown: 736 closed tcp ports (reset), 264 filtered tcp ports (no-response)
+MAC Address: B2:F6:00:11:C4:EB (Unknown)
+
+Nmap scan report for 10.138.1.62
+Host is up (0.0070s latency).
+All 1000 scanned ports on 10.138.1.62 are in ignored states.
+Not shown: 749 closed tcp ports (reset), 251 filtered tcp ports (no-response)
+MAC Address: 5A:43:61:A1:56:A9 (Unknown)
+
+Nmap scan report for 10.138.1.73
+Host is up (0.012s latency).
+All 1000 scanned ports on 10.138.1.73 are in ignored states.
+Not shown: 749 closed tcp ports (reset), 251 filtered tcp ports (no-response)
+MAC Address: DE:D4:1F:00:8B:5A (Unknown)
+
+Nmap scan report for 10.138.1.76
+Host is up (0.0074s latency).
+All 1000 scanned ports on 10.138.1.76 are in ignored states.
+Not shown: 730 closed tcp ports (reset), 270 filtered tcp ports (no-response)
+MAC Address: 36:4D:7C:65:55:AC (Unknown)
+
+Nmap scan report for 10.138.1.81
+Host is up (0.12s latency).
+All 1000 scanned ports on 10.138.1.81 are in ignored states.
+Not shown: 753 closed tcp ports (reset), 247 filtered tcp ports (no-response)
+MAC Address: F2:0B:8A:10:F2:12 (Unknown)
+
+Nmap scan report for 10.138.1.92
+Host is up (0.0077s latency).
+All 1000 scanned ports on 10.138.1.92 are in ignored states.
+Not shown: 745 closed tcp ports (reset), 255 filtered tcp ports (no-response)
+MAC Address: 22:07:BC:D5:DF:BD (Unknown)
+
+Nmap scan report for 10.138.1.93
+Host is up (0.037s latency).
+All 1000 scanned ports on 10.138.1.93 are in ignored states.
+Not shown: 751 closed tcp ports (reset), 249 filtered tcp ports (no-response)
+MAC Address: 8E:51:5F:04:03:C3 (Unknown)
+
+Nmap scan report for 10.138.1.95
+Host is up (0.067s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql   MySQL (unauthorized)
+MAC Address: 50:5A:65:7E:43:69 (AzureWave Technologies)
+
+Nmap scan report for 10.138.1.96
+Host is up (0.0093s latency).
+All 1000 scanned ports on 10.138.1.96 are in ignored states.
+Not shown: 742 closed tcp ports (reset), 258 filtered tcp ports (no-response)
+MAC Address: D2:C5:AF:F1:4D:F2 (Unknown)
+
+Nmap scan report for 10.138.1.99
+Host is up (0.0050s latency).
+All 1000 scanned ports on 10.138.1.99 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+MAC Address: C4:D0:E3:2B:19:E8 (Intel Corporate)
+
+Nmap scan report for 10.138.1.107
+Host is up (0.022s latency).
+All 1000 scanned ports on 10.138.1.107 are in ignored states.
+Not shown: 733 closed tcp ports (reset), 267 filtered tcp ports (no-response)
+MAC Address: B2:49:F2:4F:E6:DE (Unknown)
+
+Nmap scan report for 10.138.1.109
+Host is up (0.014s latency).
+All 1000 scanned ports on 10.138.1.109 are in ignored states.
+Not shown: 744 closed tcp ports (reset), 256 filtered tcp ports (no-response)
+MAC Address: 9E:FD:F8:E2:AE:97 (Unknown)
+
+Nmap scan report for 10.138.1.110
+Host is up (0.015s latency).
+All 1000 scanned ports on 10.138.1.110 are in ignored states.
+Not shown: 742 closed tcp ports (reset), 258 filtered tcp ports (no-response)
+MAC Address: 06:48:8D:64:08:A4 (Unknown)
+
+Nmap scan report for 10.138.1.113
+Host is up (0.014s latency).
+All 1000 scanned ports on 10.138.1.113 are in ignored states.
+Not shown: 718 closed tcp ports (reset), 282 filtered tcp ports (no-response)
+MAC Address: 22:9A:E1:14:0D:A7 (Unknown)
+
+Nmap scan report for 10.138.1.115
+Host is up (0.033s latency).
+All 1000 scanned ports on 10.138.1.115 are in ignored states.
+Not shown: 734 closed tcp ports (reset), 266 filtered tcp ports (no-response)
+MAC Address: 6E:D6:7B:28:10:5F (Unknown)
+
+Nmap scan report for 10.138.1.122
+Host is up (0.019s latency).
+All 1000 scanned ports on 10.138.1.122 are in ignored states.
+Not shown: 696 closed tcp ports (reset), 304 filtered tcp ports (no-response)
+MAC Address: F6:CC:73:75:9B:C4 (Unknown)
+
+Nmap scan report for 10.138.1.124
+Host is up (0.15s latency).
+All 1000 scanned ports on 10.138.1.124 are in ignored states.
+Not shown: 730 closed tcp ports (reset), 270 filtered tcp ports (no-response)
+MAC Address: 8A:8E:53:97:2E:E6 (Unknown)
+
+Nmap scan report for 10.138.1.128
+Host is up (0.056s latency).
+All 1000 scanned ports on 10.138.1.128 are in ignored states.
+Not shown: 733 closed tcp ports (reset), 267 filtered tcp ports (no-response)
+MAC Address: 4E:32:99:42:5E:6E (Unknown)
+
+Nmap scan report for 10.138.1.129
+Host is up (0.015s latency).
+All 1000 scanned ports on 10.138.1.129 are in ignored states.
+Not shown: 712 closed tcp ports (reset), 288 filtered tcp ports (no-response)
+MAC Address: 82:78:27:62:5C:35 (Unknown)
+
+Nmap scan report for 10.138.1.130
+Host is up (0.038s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql   MySQL (unauthorized)
+MAC Address: 08:9D:F4:6A:5C:E8 (Intel Corporate)
+
+Nmap scan report for 10.138.1.141
+Host is up (0.025s latency).
+All 1000 scanned ports on 10.138.1.141 are in ignored states.
+Not shown: 732 closed tcp ports (reset), 268 filtered tcp ports (no-response)
+MAC Address: 82:90:69:04:5F:41 (Unknown)
+
+Nmap scan report for 10.138.1.143
+Host is up (0.022s latency).
+All 1000 scanned ports on 10.138.1.143 are in ignored states.
+Not shown: 703 closed tcp ports (reset), 297 filtered tcp ports (no-response)
+MAC Address: A2:A3:72:E3:71:EC (Unknown)
+
+Nmap scan report for 10.138.1.146
+Host is up (0.0038s latency).
+All 1000 scanned ports on 10.138.1.146 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+MAC Address: 14:D4:24:17:F2:CF (AzureWave Technology)
+
