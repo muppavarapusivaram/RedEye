@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import (
     QMessageBox,
 )
 
-from gui.core.ai_manager import AIManager
+from core.ai_manager import AIManager
 
 
 class AIConfigDialog(QDialog):

@@ -2,8 +2,8 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from core.disclaimer import ensure_disclaimer_acknowledged
-from main_window import MainWindow
+from gui.core.disclaimer import ensure_disclaimer_acknowledged
+from gui.main_window import MainWindow
 
 
 APP_STYLESHEET = """
@@ -58,4 +58,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

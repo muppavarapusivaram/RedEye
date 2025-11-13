@@ -13,14 +13,20 @@ from PyQt5.QtWidgets import (
     QStackedWidget,
     QVBoxLayout,
     QWidget,
+    QSizePolicy,
 )
 
-from ai_manager import AIManager
-from anonymity import AnonymityModule
-from dashboard import DashboardTab
-from module_panel import ModulePanel
-from recon import ReconnaissanceModule
-from reports import ReportsTab
+from gui.core.ai_manager import AIManager
+from gui.dashboard import DashboardTab
+from gui.core.module_panel import ModulePanel
+from modules.anonymity.anonymity import AnonymityModule
+from modules.network_recon.recon import ReconnaissanceModule
+from modules.vulnerability_scanning.vulnerability import VulnerabilityScanningModule
+from modules.wireless_attacks.wireless import WirelessAttacksModule
+from modules.network_attacks.network_attacks import NetworkAttacksModule
+from modules.system_hacking.system_hacking import SystemHackingModule
+from modules.password_cracking.password_cracking import PasswordCrackingModule
+from gui.reports import ReportsTab
 
 
 class MainWindow(QMainWindow):
@@ -30,9 +36,12 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Automated Red Teaming Assistant (Prototype GUI)")
         self.resize(1320, 860)
+        self.setMinimumSize(960, 640)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.ai_manager = AIManager()
 
         central = QWidget()
+        central.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         central_layout = QVBoxLayout(central)
         central_layout.setContentsMargins(16, 16, 16, 16)
         central_layout.setSpacing(0)
@@ -40,6 +49,7 @@ class MainWindow(QMainWindow):
 
         outer_frame = QFrame()
         outer_frame.setObjectName("OuterFrame")
+        outer_frame.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         outer_frame.setStyleSheet(
             """
             #OuterFrame {
@@ -65,6 +75,7 @@ class MainWindow(QMainWindow):
 
         content_frame = QFrame()
         content_frame.setObjectName("ContentFrame")
+        content_frame.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         content_frame.setStyleSheet(
             """
             #ContentFrame {
@@ -83,6 +94,7 @@ class MainWindow(QMainWindow):
         content_layout.addWidget(self.menu_frame)
 
         self.stacked_widget = QStackedWidget()
+        self.stacked_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.pages: Dict[str, QWidget] = {}
 
         self._register_pages()
@@ -234,121 +246,23 @@ class MainWindow(QMainWindow):
         """Populate the stacked widget with all application pages."""
         self.anonymity_module = AnonymityModule()
         self.recon_module = ReconnaissanceModule(self.ai_manager)
+        self.vuln_module = VulnerabilityScanningModule()
+        self.wireless_module = WirelessAttacksModule()
+        self.netatt_module = NetworkAttacksModule()
+        self.sys_module = SystemHackingModule()
+        self.pw_module = PasswordCrackingModule()
+
         pages: Dict[str, QWidget] = {
             "Dashboard": DashboardTab(self.ai_manager),
             "Anonymity & Evasion": self.anonymity_module,
             "Reconnaissance & Scanning": self.recon_module,
+            "Vulnerability Scanning": self.vuln_module,
+            "Wireless Attacks": self.wireless_module,
+            "Network Attacks": self.netatt_module,
+            "System Hacking": self.sys_module,
+            "Password Cracking": self.pw_module,
             "Reports": ReportsTab(self.ai_manager),
         }
-
-        modules: List[Dict[str, List[str] | str]] = [
-            {
-                "name": "Vulnerability Scanning",
-                "description": (
-                    "Correlate data from OpenVAS and Lynis to identify vulnerabilities, track severity, "
-                    "and prepare inputs for AI-driven prioritisation."
-                ),
-                "objectives": [
-                    "Import reconnaissance findings into scan templates",
-                    "Visualise scanning progress and outcomes",
-                    "Normalise vulnerability results for downstream analysis",
-                ],
-                "tools": [
-                    "OpenVAS workflow wrapper",
-                    "Lynis audit runner",
-                    "Result parsing pipelines",
-                    "Severity scoring utilities",
-                ],
-            },
-            {
-                "name": "Wireless Attacks",
-                "description": (
-                    "Manage monitor mode, capture handshakes, and perform wireless offensive actions "
-                    "using the Aircrack-ng suite."
-                ),
-                "objectives": [
-                    "Detect and select wireless interfaces",
-                    "Capture and manage handshake files",
-                    "Guide users through ethical wireless testing scenarios",
-                ],
-                "tools": [
-                    "Airmon-ng interface handler",
-                    "Airodump-ng capture controller",
-                    "Aireplay-ng attack presets",
-                    "Aircrack-ng cracking wizard",
-                ],
-            },
-            {
-                "name": "Network Attacks",
-                "description": (
-                    "Coordinate ARP spoofing operations and traffic monitoring while enforcing safeguards "
-                    "against collateral impact."
-                ),
-                "objectives": [
-                    "Configure gateway/target pairs safely",
-                    "Visualise intercepted session data",
-                    "Log actions for audit and rollback",
-                ],
-                "tools": [
-                    "ARP spoofing orchestrator",
-                    "Packet inspection console",
-                    "Mitigation checklist",
-                ],
-            },
-            {
-                "name": "System Hacking",
-                "description": (
-                    "Run Responder for credential harvesting and generate cross-platform reverse shell "
-                    "payloads with operational guidance."
-                ),
-                "objectives": [
-                    "Centrally manage listener configurations",
-                    "Template reverse shell payloads",
-                    "Document captured credentials securely",
-                ],
-                "tools": [
-                    "Responder automation",
-                    "Reverse shell generator",
-                    "Listener setup assistant",
-                ],
-            },
-            {
-                "name": "Password Cracking",
-                "description": (
-                    "Leverage multi-tool cracking workflows with John, Hydra, Hashcat, Medusa, and Crunch "
-                    "while monitoring resource usage."
-                ),
-                "objectives": [
-                    "Support diverse hash and protocol types",
-                    "Track cracking progress and wordlist usage",
-                    "Store cracked credentials with safeguards",
-                ],
-                "tools": [
-                    "John the Ripper presets",
-                    "Hydra protocol runners",
-                    "Hashcat mode catalogue",
-                    "Medusa concurrent job manager",
-                    "Crunch wordlist builder",
-                ],
-            },
-        ]
-
-        for module in modules:
-            if module["name"] == "Anonymity & Evasion":
-                continue
-            if module["name"] == "Reconnaissance & Scanning":
-                continue
-            scroll_area = QScrollArea()
-            scroll_area.setWidgetResizable(True)
-            module_panel = ModulePanel(
-                module["name"],  # type: ignore[arg-type]
-                module["description"],  # type: ignore[arg-type]
-                module["objectives"],  # type: ignore[arg-type]
-                module["tools"],  # type: ignore[arg-type]
-            )
-            module_panel.setObjectName(module["name"])  # type: ignore[arg-type]
-            scroll_area.setWidget(module_panel)
-            pages[module["name"]] = scroll_area  # type: ignore[index]
 
         for key, widget in pages.items():
             self.pages[key] = widget

@@ -15,11 +15,10 @@ from PyQt5.QtWidgets import (
     QMessageBox,
 )
 
-from gui.core.ai_manager import AIManager
+from core.ai_manager import AIManager
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-REPORTS_DIR = PROJECT_ROOT / "reports"
+REPORTS_DIR = Path(__file__).resolve().parents[2] / "reports"
 
 
 class AIAnalysisWorker(QThread):
@@ -138,7 +137,7 @@ class ReportsTab(QWidget):
         # Find all report files
         report_files = []
         for pattern in ["*.md", "*.txt"]:
-            report_files.extend(REPORTS_DIR.rglob(pattern))
+            report_files.extend(REPORTS_DIR.glob(pattern))
         
         # Sort by modification time (newest first)
         report_files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
@@ -149,11 +148,7 @@ class ReportsTab(QWidget):
             return
         
         for report_path in report_files:
-            try:
-                display_name = str(report_path.relative_to(REPORTS_DIR))
-            except ValueError:
-                display_name = report_path.name
-            item = QListWidgetItem(display_name)
+            item = QListWidgetItem(report_path.name)
             item.setData(Qt.UserRole, str(report_path))
             # Add file size and date
             try:
@@ -161,7 +156,7 @@ class ReportsTab(QWidget):
                 size_kb = stat.st_size / 1024
                 from datetime import datetime
                 mod_time = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M")
-                item.setText(f"{display_name} ({size_kb:.1f} KB, {mod_time})")
+                item.setText(f"{report_path.name} ({size_kb:.1f} KB, {mod_time})")
             except:
                 pass
             self.reports_list.addItem(item)
@@ -196,14 +191,11 @@ class ReportsTab(QWidget):
             # Reload AI settings to ensure we have latest config
             self.ai_manager._load()
             
-            # Enable action buttons
-            self.analyze_button.setEnabled(True)
-            self.view_raw_button.setEnabled(True)
-
+            # Enable analyze button if AI is configured
+            self.analyze_button.setEnabled(self.ai_manager.is_enabled())
+            self.view_raw_button.setEnabled(False)
             if not self.ai_manager.is_enabled():
-                self.status_label.setText(
-                    "AI is not configured. You can still view the raw report or configure AI via Dashboard."
-                )
+                self.status_label.setText("AI is not configured. Go to Dashboard -> 'Use AI...' to enable AI analysis.")
                 self.status_label.setStyleSheet("color: #ffaeaa;")
             else:
                 self.status_label.setText(f"Report loaded: {report_path.name}")
@@ -222,7 +214,7 @@ class ReportsTab(QWidget):
             QMessageBox.warning(
                 self,
                 "AI Not Configured",
-                "AI is not configured. Please go to Dashboard -> 'Use AI...' to set it up first."
+                "AI is not configured. Please go to Dashboard -> 'Use AI...' to configure AI."
             )
             return
         
