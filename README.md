@@ -51,7 +51,7 @@ Navigation lives on the left side of the main window. Each section has a dedicat
 | Vulnerability Scanning | OpenVAS service, Lynis audit | `openvas_*.sh`, `lynis_audit.sh` |
 | Wireless Attacks | Aircrack-ng workflow helpers | `list_interfaces.sh`, `airmon_start.sh`, `deauth.sh`, etc. |
 | Network Attacks | ARP spoofing, traffic capture, Bettercap | `arp_spoof_*.sh`, `bettercap_*.sh` |
-| System Hacking | Responder, reverse shells, credential viewing | `responder_*.sh`, `generate_shell.sh`, `start_listener.sh` |
+| System Hacking | Reverse shells (msfvenom) | `generate_shell.sh`, `start_listener.sh` |
 | Password Cracking | John, Hashcat, Hydra, Crunch | `john_*.sh`, `hashcat_run.sh`, `hydra_run.sh`, `crunch_generate.sh` |
 | Reports | Browse every `.txt` / `.md` report under `reports/`, preview, run AI analysis | — |
 
