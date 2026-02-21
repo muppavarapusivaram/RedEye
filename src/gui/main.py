@@ -44,8 +44,8 @@ def apply_global_styles(app: QApplication) -> None:
 def main() -> None:
     """Entry point for launching the PyQt application."""
     app = QApplication(sys.argv)
-    app.setApplicationName("Automated Red Teaming Assistant")
-    app.setOrganizationName("ARTA Team")
+    app.setApplicationName("RedEye")
+    app.setOrganizationName("RedEye")
     apply_global_styles(app)
 
     if not ensure_disclaimer_acknowledged():

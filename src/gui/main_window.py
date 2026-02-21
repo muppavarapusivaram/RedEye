@@ -34,7 +34,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Automated Red Teaming Assistant (Prototype GUI)")
+        self.setWindowTitle("RedEye")
         self.resize(1320, 860)
         self.setMinimumSize(960, 640)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -148,20 +148,15 @@ class MainWindow(QMainWindow):
         logo_label.setFixedSize(120, 60)
         logo_label.setAlignment(Qt.AlignCenter)
 
-        title = QLabel("Automated Red Teaming Assistant")
+        title = QLabel("RedEye")
         title_font = QFont()
         title_font.setPointSize(16)
         title_font.setBold(True)
         title.setFont(title_font)
         title.setStyleSheet("color: #f1f3f6;")
 
-        subtitle = QLabel("Prototype GUI • Phase 1")
-        subtitle.setStyleSheet("color: #8892a6; font-size: 12px;")
-
         text_container = QVBoxLayout()
-        text_container.setSpacing(2)
         text_container.addWidget(title)
-        text_container.addWidget(subtitle)
 
         layout.addWidget(self.menu_toggle_btn)
         layout.addWidget(logo_label)
@@ -300,7 +295,7 @@ class MainWindow(QMainWindow):
         font.setPointSize(14)
         font.setBold(True)
         painter.setFont(font)
-        painter.drawText(pixmap.rect(), Qt.AlignCenter, "ARTA")
+        painter.drawText(pixmap.rect(), Qt.AlignCenter, "RedEye")
         painter.end()
         return pixmap
 

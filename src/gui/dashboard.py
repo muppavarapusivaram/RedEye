@@ -114,7 +114,7 @@ class DashboardTab(QWidget):
         layout = QVBoxLayout(self)
         layout.setSpacing(16)
 
-        hero = QGroupBox("Automated Red Teaming Assistant (ARTA)")
+        hero = QGroupBox("RedEye")
         hero_layout = QVBoxLayout(hero)
         hero_copy = QLabel(
             "Centralised interface for orchestrating reconnaissance, vulnerability assessments, "
@@ -140,9 +140,6 @@ class DashboardTab(QWidget):
 
         quick_actions = QGroupBox("Quick Actions")
         quick_layout = QHBoxLayout(quick_actions)
-        quick_layout.addWidget(QPushButton("Create New Project"))
-        quick_layout.addWidget(QPushButton("Open Existing Project"))
-        quick_layout.addWidget(QPushButton("View Audit Log"))
         ai_button = QPushButton("Use AI…")
         ai_button.clicked.connect(self._open_ai_config)
         quick_layout.addWidget(ai_button)

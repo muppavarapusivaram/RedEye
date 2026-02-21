@@ -22,7 +22,7 @@ class DisclaimerDialog(QDialog):
     """Displays the legal and ethical disclaimer before the user accesses the GUI."""
 
     DISCLAIMER_TEXT = (
-        "Automated Red Teaming Assistant (ARTA) is an educational tool designed for "
+        "RedEye is an educational tool designed for "
         "authorized security testing in controlled environments. By continuing, you confirm "
         "that you:\n\n"
         "• Have explicit permission to assess the targets you will interact with\n"

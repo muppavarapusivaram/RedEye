@@ -15,10 +15,12 @@ from PyQt5.QtWidgets import (
     QHBoxLayout,
     QFileDialog,
     QInputDialog,
-    QLabel, 
+    QLabel,
     QLineEdit,
     QMessageBox,
     QPushButton,
+    QScrollArea,
+    QSizePolicy,
     QTextBrowser,
     QVBoxLayout,
     QWidget,
@@ -414,7 +416,9 @@ class ReconnaissanceModule(QWidget):
         self.current_raw_output: str = ""
         REPORTS_DIR.mkdir(parents=True, exist_ok=True)
         layout = QVBoxLayout(self)
-        layout.setSpacing(16)
+        layout.setSpacing(12)
+        layout.setContentsMargins(12, 12, 12, 12)
+
         header = QLabel("Reconnaissance & Scanning")
         header_font = QFont()
         header_font.setPointSize(14)
@@ -439,38 +443,57 @@ class ReconnaissanceModule(QWidget):
         tool_status_layout.addWidget(self.tool_cancel_button)
         layout.addLayout(tool_status_layout)
 
-        layout.addWidget(self._build_nmap_group())
-        layout.addWidget(self._build_theharvester_group())
-        layout.addWidget(self._build_reconng_group())
-        layout.addWidget(self._build_amass_group())
-        layout.addWidget(self._build_gobuster_group())
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        scroll.setFrameShape(QScrollArea.NoFrame)
+        scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+
+        scroll_content = QWidget()
+        scroll_layout = QVBoxLayout(scroll_content)
+        scroll_layout.setSpacing(16)
+        scroll_layout.setContentsMargins(0, 0, 8, 0)
+        scroll_layout.addWidget(self._build_nmap_group())
+        scroll_layout.addWidget(self._build_theharvester_group())
+        scroll_layout.addWidget(self._build_reconng_group())
+        scroll_layout.addWidget(self._build_amass_group())
+        scroll_layout.addWidget(self._build_gobuster_group())
+        scroll_layout.addStretch()
+        scroll.setWidget(scroll_content)
+
+        layout.addWidget(scroll)
+
         self.output_browser = QTextBrowser()
         self.output_browser.setPlaceholderText("Scan output and AI analysis will appear here.")
         self.output_browser.setMinimumHeight(240)
-        layout.addWidget(self.output_browser)
-        layout.addStretch()
+        self.output_browser.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        layout.addWidget(self.output_browser, 1)
 
     def _build_nmap_group(self) -> QGroupBox:
         group = QGroupBox("Nmap Port Scanning")
+        group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         layout = QVBoxLayout(group)
+        layout.setSpacing(10)
         description = QLabel(
             "Perform port scanning, service detection, and OS fingerprinting. Choose automatic subnet scanning or customise the command."
         )
         description.setWordWrap(True)
+        layout.addWidget(description)
         button_layout = QHBoxLayout()
+        button_layout.setSpacing(8)
         self.run_button = QPushButton("Run Nmap…")
         self.run_button.clicked.connect(self._open_nmap_dialog)
-        self.run_button.setMinimumWidth(180)
+        self.run_button.setMinimumWidth(160)
         self.run_button.setMinimumHeight(36)
         self.cancel_button = QPushButton("Cancel Scan")
         self.cancel_button.clicked.connect(self._cancel_scan)
         self.cancel_button.setEnabled(False)
-        self.cancel_button.setMinimumWidth(160)
+        self.cancel_button.setMinimumWidth(140)
         self.cancel_button.setMinimumHeight(36)
         button_layout.addWidget(self.run_button)
         button_layout.addWidget(self.cancel_button)
         button_layout.addStretch()
-        layout.addWidget(description)
         layout.addLayout(button_layout)
         return group
 
@@ -641,24 +664,23 @@ class ReconnaissanceModule(QWidget):
     #################################################################
     def _build_theharvester_group(self) -> QGroupBox:
         group = QGroupBox("TheHarvester – OSINT Enumeration")
+        group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         layout = QVBoxLayout(group)
-
+        layout.setSpacing(10)
         description = QLabel(
             "Collect emails, names, subdomains, and other public information from "
             "multiple search engines. Ideal for initial intelligence gathering."
         )
         description.setWordWrap(True)
-
+        layout.addWidget(description)
         btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(8)
         run_button = QPushButton("Run TheHarvester…")
         run_button.clicked.connect(self._run_theharvester)
-        run_button.setMinimumWidth(220)
+        run_button.setMinimumWidth(180)
         run_button.setMinimumHeight(36)
-
         btn_layout.addWidget(run_button)
         btn_layout.addStretch()
-
-        layout.addWidget(description)
         layout.addLayout(btn_layout)
         return group
 
@@ -700,24 +722,23 @@ class ReconnaissanceModule(QWidget):
     #################################################################
     def _build_reconng_group(self) -> QGroupBox:
         group = QGroupBox("Recon-ng – Reconnaissance Framework")
+        group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         layout = QVBoxLayout(group)
-
+        layout.setSpacing(10)
         description = QLabel(
             "A modular reconnaissance framework with powerful automation and "
             "built-in intelligence gathering modules."
         )
         description.setWordWrap(True)
-
+        layout.addWidget(description)
         btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(8)
         run_button = QPushButton("Run Recon-ng…")
         run_button.clicked.connect(self._run_reconng)
-        run_button.setMinimumWidth(220)
+        run_button.setMinimumWidth(180)
         run_button.setMinimumHeight(36)
-
         btn_layout.addWidget(run_button)
         btn_layout.addStretch()
-
-        layout.addWidget(description)
         layout.addLayout(btn_layout)
         return group
 
@@ -727,24 +748,23 @@ class ReconnaissanceModule(QWidget):
     #################################################################
     def _build_amass_group(self) -> QGroupBox:
         group = QGroupBox("Amass – Subdomain Enumeration")
+        group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         layout = QVBoxLayout(group)
-
+        layout.setSpacing(10)
         description = QLabel(
             "Perform deep subdomain enumeration using passive, active, or "
             "brute-force reconnaissance techniques."
         )
         description.setWordWrap(True)
-
+        layout.addWidget(description)
         btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(8)
         run_button = QPushButton("Run Amass…")
         run_button.clicked.connect(self._run_amass)
-        run_button.setMinimumWidth(220)
+        run_button.setMinimumWidth(180)
         run_button.setMinimumHeight(36)
-
         btn_layout.addWidget(run_button)
         btn_layout.addStretch()
-
-        layout.addWidget(description)
         layout.addLayout(btn_layout)
         return group
 
@@ -754,23 +774,22 @@ class ReconnaissanceModule(QWidget):
     #################################################################
     def _build_gobuster_group(self) -> QGroupBox:
         group = QGroupBox("Gobuster – Directory & DNS Enumeration")
+        group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         layout = QVBoxLayout(group)
-
+        layout.setSpacing(10)
         description = QLabel(
             "Brute-force directories, files, and DNS subdomains with high performance. "
             "Useful for discovering hidden paths and domain assets."
         )
         description.setWordWrap(True)
-
+        layout.addWidget(description)
         btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(8)
         run_button = QPushButton("Run Gobuster…")
         run_button.clicked.connect(self._run_gobuster)
-        run_button.setMinimumWidth(220)
+        run_button.setMinimumWidth(180)
         run_button.setMinimumHeight(36)
-
         btn_layout.addWidget(run_button)
         btn_layout.addStretch()
-
-        layout.addWidget(description)
         layout.addLayout(btn_layout)
         return group

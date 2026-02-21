@@ -4,6 +4,11 @@ src/config/ai_settings.json
 # Generated reports – scans, AI summaries, captures (do not share)
 reports/
 
+# Reverse shell payloads (msfvenom) – never commit
+reports/system_hacking/payload_*
+*.elf
+*.exe
+
 # Optional: local user state (disclaimer acceptance, etc.)
 # src/config/user_state.json
 
