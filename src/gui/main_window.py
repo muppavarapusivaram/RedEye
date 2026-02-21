@@ -303,5 +303,7 @@ class MainWindow(QMainWindow):
         """Gracefully stop background processes when the window closes."""
         if hasattr(self, "anonymity_module") and self.anonymity_module:
             self.anonymity_module.shutdown()
+        if hasattr(self, "vuln_module") and self.vuln_module:
+            self.vuln_module.shutdown()
         super().closeEvent(event)
 
