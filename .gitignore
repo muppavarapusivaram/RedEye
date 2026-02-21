@@ -1,0 +1,32 @@
+# API key and secrets – never commit
+src/config/ai_settings.json
+
+# Generated reports – scans, AI summaries, captures (do not share)
+reports/
+
+# Optional: local user state (disclaimer acceptance, etc.)
+# src/config/user_state.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
