@@ -33,7 +33,7 @@ print(f"[DEBUG] Loading ReconnaissanceModule from {__file__}")
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent / "scripts"
-REPORTS_DIR = Path(__file__).resolve().parents[4] / "reports" / "network_recon"
+REPORTS_DIR = Path(__file__).resolve().parents[3] / "reports" / "network_recon"
 
 
 @dataclass
