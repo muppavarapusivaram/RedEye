@@ -22,6 +22,9 @@ from PyQt5.QtWidgets import (
     QFormLayout,
     QScrollArea,
     QSizePolicy,
+    QDialog,
+    QDialogButtonBox,
+    QFileDialog,
 )
 
 SCRIPT_DIR = Path(__file__).resolve().parent / "scripts"
@@ -106,6 +109,86 @@ class ScriptWorker(QThread):
             self.finished_signal.emit(ScanResult(False, "", f"Script not found: {script_path}"))
         except Exception as exc:
             self.finished_signal.emit(ScanResult(False, "", str(exc)))
+
+
+class CrackHandshakeDialog(QDialog):
+    """Dialog to pick handshake .cap file and wordlist, then run aircrack-ng."""
+
+    def __init__(self, parent: QWidget | None = None) -> None:
+        super().__init__(parent)
+        self.setWindowTitle("Crack handshake")
+        self.setMinimumWidth(480)
+        layout = QVBoxLayout(self)
+
+        form = QFormLayout()
+        self.handshake_edit = QLineEdit()
+        self.handshake_edit.setPlaceholderText("Path to .cap file (e.g. reports/wireless_attacks/cap_*-01.cap)")
+        browse_handshake = QPushButton("Browse…")
+        browse_handshake.clicked.connect(self._browse_handshake)
+        h1 = QHBoxLayout()
+        h1.addWidget(self.handshake_edit)
+        h1.addWidget(browse_handshake)
+        form.addRow("Handshake file (.cap):", h1)
+
+        self.wordlist_edit = QLineEdit()
+        self.wordlist_edit.setPlaceholderText("Path to wordlist (e.g. /usr/share/wordlists/rockyou.txt)")
+        browse_wordlist = QPushButton("Browse…")
+        browse_wordlist.clicked.connect(self._browse_wordlist)
+        h2 = QHBoxLayout()
+        h2.addWidget(self.wordlist_edit)
+        h2.addWidget(browse_wordlist)
+        form.addRow("Wordlist:", h2)
+        layout.addLayout(form)
+
+        self.error_label = QLabel("")
+        self.error_label.setStyleSheet("color: #ff5c64;")
+        self.error_label.setWordWrap(True)
+        layout.addWidget(self.error_label)
+
+        buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        buttons.button(QDialogButtonBox.Ok).setText("Go")
+        buttons.accepted.connect(self._accept)
+        buttons.rejected.connect(self.reject)
+        layout.addWidget(buttons)
+
+    def _browse_handshake(self) -> None:
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Select handshake capture", str(REPORTS_DIR),
+            "Capture files (*.cap);;All files (*.*)",
+        )
+        if path:
+            self.handshake_edit.setText(path)
+
+    def _browse_wordlist(self) -> None:
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Select wordlist", str(Path.home()),
+            "Text files (*.txt);;All files (*.*)",
+        )
+        if path:
+            self.wordlist_edit.setText(path)
+
+    def _accept(self) -> None:
+        handshake = self.handshake_edit.text().strip()
+        wordlist = self.wordlist_edit.text().strip()
+        if not handshake:
+            self.error_label.setText("Please select a handshake (.cap) file.")
+            return
+        if not wordlist:
+            self.error_label.setText("Please select a wordlist file.")
+            return
+        if not Path(handshake).expanduser().resolve().exists():
+            self.error_label.setText(f"Handshake file not found: {handshake}")
+            return
+        if not Path(wordlist).expanduser().resolve().exists():
+            self.error_label.setText(f"Wordlist file not found: {wordlist}")
+            return
+        self.accept()
+
+    def get_paths(self) -> Tuple[str, str]:
+        return (
+            self.handshake_edit.text().strip(),
+            self.wordlist_edit.text().strip(),
+        )
 
 
 class WirelessAttacksModule(QWidget):
@@ -249,10 +332,16 @@ class WirelessAttacksModule(QWidget):
         group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         v = QVBoxLayout(group)
         v.setSpacing(8)
-        v.addWidget(QLabel("Send deauth packets to the current capture target to force WPA handshake."))
-        deauth_btn = QPushButton("Deauth attack (current target)")
+        v.addWidget(QLabel("Send deauth packets to the current capture target. Start = continuous; stop when handshake is captured."))
+        h = QHBoxLayout()
+        deauth_btn = QPushButton("Deauth attack (start)")
         deauth_btn.clicked.connect(self._run_deauth)
-        v.addWidget(deauth_btn, alignment=Qt.AlignLeft)
+        stop_deauth_btn = QPushButton("Stop deauth")
+        stop_deauth_btn.clicked.connect(self._run_deauth_stop)
+        h.addWidget(deauth_btn)
+        h.addWidget(stop_deauth_btn)
+        h.addStretch()
+        v.addLayout(h)
         return group
 
     def _build_cracking_group(self) -> QGroupBox:
@@ -260,9 +349,9 @@ class WirelessAttacksModule(QWidget):
         group.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         v = QVBoxLayout(group)
         v.setSpacing(8)
-        v.addWidget(QLabel("Crack WPA/WPA2 handshakes with Aircrack-ng (you will configure this later)."))
-        crack_btn = QPushButton("Crack handshake")
-        crack_btn.clicked.connect(lambda: self._run("crack_handshake.sh"))
+        v.addWidget(QLabel("Crack WPA/WPA2 handshake with aircrack-ng. Choose the .cap file and a wordlist."))
+        crack_btn = QPushButton("Crack handshake…")
+        crack_btn.clicked.connect(self._run_crack_handshake)
         v.addWidget(crack_btn, alignment=Qt.AlignLeft)
         return group
 
@@ -491,13 +580,22 @@ class WirelessAttacksModule(QWidget):
             return
         if os.geteuid() != 0 and not self._ensure_sudo():
             return
-        self._append(f"[+] Sending deauth to {self.selected_bssid}...")
+        self._append(f"[+] Starting continuous deauth to {self.selected_bssid}...")
         self.tool_worker = ScriptWorker(
             "deauth.sh",
-            args=[self.monitor_interface, self.selected_bssid],
+            args=[self.monitor_interface, self.selected_bssid, "--continuous"],
             require_root=True,
             sudo_password=self.sudo_password,
         )
+        self.tool_worker.output_signal.connect(self._append)
+        self.tool_worker.finished_signal.connect(self._on_tool_finished)
+        self.tool_worker.start()
+
+    def _run_deauth_stop(self) -> None:
+        if os.geteuid() != 0 and not self._ensure_sudo():
+            return
+        self._append("[+] Stopping deauth attack...")
+        self.tool_worker = ScriptWorker("deauth_stop.sh", require_root=True, sudo_password=self.sudo_password)
         self.tool_worker.output_signal.connect(self._append)
         self.tool_worker.finished_signal.connect(self._on_tool_finished)
         self.tool_worker.start()
@@ -506,6 +604,25 @@ class WirelessAttacksModule(QWidget):
         self.tool_worker = None
         if not result.success and result.error:
             self._append(f"[!] {result.error}")
+
+    def _run_crack_handshake(self) -> None:
+        dialog = CrackHandshakeDialog(self)
+        if dialog.exec_() != QDialog.Accepted:
+            return
+        handshake_path, wordlist_path = dialog.get_paths()
+        handshake_abs = str(Path(handshake_path).expanduser().resolve())
+        wordlist_abs = str(Path(wordlist_path).expanduser().resolve())
+        self._append(f"[+] Cracking handshake: {handshake_abs}")
+        self._append(f"[+] Wordlist: {wordlist_abs}")
+        self._append("[+] This may take a long time. Output below…")
+        self.tool_worker = ScriptWorker(
+            "crack_handshake.sh",
+            args=[handshake_abs, wordlist_abs],
+            require_root=False,
+        )
+        self.tool_worker.output_signal.connect(self._append)
+        self.tool_worker.finished_signal.connect(self._on_tool_finished)
+        self.tool_worker.start()
 
     def _run(self, script_name: str, args: Optional[List[str]] = None) -> None:
         path = self.scripts_dir / script_name

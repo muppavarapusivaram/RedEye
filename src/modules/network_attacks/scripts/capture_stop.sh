@@ -1,4 +1,22 @@
 #!/usr/bin/env bash
+# Stop tcpdump capture.
 set -euo pipefail
-echo "[TODO] capture_stop.sh not yet implemented."
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+REPORTS_DIR="$PROJECT_ROOT/reports/network_attacks"
+PID_FILE="$REPORTS_DIR/.capture_pid"
+
+if [ ! -f "$PID_FILE" ]; then
+  echo "[+] No capture running."
+  exit 0
+fi
+
+PID="$(cat "$PID_FILE")"
+if kill -0 "$PID" 2>/dev/null; then
+  kill -TERM "$PID" 2>/dev/null || true
+  sleep 1
+  kill -9 "$PID" 2>/dev/null || true
+fi
+rm -f "$PID_FILE"
+echo "[+] Capture stopped. PCAP saved in $REPORTS_DIR"

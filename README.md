@@ -20,6 +20,8 @@ PyQt5 desktop prototype for orchestrating red-team reconnaissance tasks (Phaseâ€
 Optional (AI workflows):
 - OpenAI or Google Generative AI API key
 
+**Privacy:** API keys and generated reports are **not** committed to the repo. Copy `src/config/ai_settings.json.example` to `src/config/ai_settings.json` and add your key locally. The `reports/` directory is gitignored.
+
 ---
 
 ## Quick Start
