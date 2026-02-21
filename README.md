@@ -1,4 +1,4 @@
-# Automated Red Teaming Assistant (ARTA)
+# RedEye
 
 PyQt5 desktop prototype for orchestrating red-team reconnaissance tasks (Phase 1). The GUI focuses on operational scaffolding: launching tools via bash scripts, capturing outputs, and wiring results into the interface for rapid analysis and reporting.
 
